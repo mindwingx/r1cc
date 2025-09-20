@@ -1,0 +1,14 @@
+services:
+  database:
+    image: 'postgres:latest'
+    restart: always
+    environment:
+      POSTGRES_USER: nex
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: sms
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - backend

@@ -1,0 +1,19 @@
+service:
+  core:
+    container_name: core_service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    #    image: "acl:latest"
+    restart: always
+    ports:
+      - "8080:8080"
+    deploy:
+      mode: replicated
+      replicas: 1
+    depends_on:
+      - db
+      - cache
+      - logger
+    networks:
+      - backend

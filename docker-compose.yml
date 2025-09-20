@@ -1,0 +1,14 @@
+name: "sms_gw"
+
+include:
+  - docker/cache.yml
+  - docker/database.yml
+  - docker/logger.yml
+  - docker/trace.yml
+  - docker/queue.yml
+  - docker/app.yml
+
+
+networks:
+  backend:
+    driver: bridge

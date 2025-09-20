@@ -1,0 +1,38 @@
+{
+  "test_msg": {
+    "one": "test {{.Item}} message",
+    "other": "test {{.Item}} {{.Item2}} messages"
+  },
+
+  "server_err": "server internal error",
+
+  "resp_fail": "failed to process request",
+  "resp_done": "process was done successfully",
+  "create_done": "create request was done successfully",
+  "update_done": "item updated successfully",
+  "delete_done": "item deleted successfully",
+  "not_found": "item not found",
+  "item_not_found": "inquired {{.i}} item not found",
+  "items_assigned": "item(s) assigned successfully",
+  "tokens_revoked": "tokens revoked successfully",
+  "conflict_detected": "conflict detected while processing",
+  "inactive_item": "activate the {{.i}} item to continue process",
+  "active_item_del_err": "deletion failed. item is active",
+  "shared_item_del_err": "deletion failed. item is shared",
+  "released_item_del_err": "deletion failed. item is released",
+  "dto_bind_err": "invalid sent data",
+
+  "validation_err": "validation failed for some fields",
+  "invalid_processing" : "invalid processing",
+  "relation_items_exist" : "{{.i}} relation item(s) exist",
+  "ids_not_matched": "the {{.i}} id(s) not matched",
+  "release_date_invalid": "the release date is before the current date/time",
+  "release_date_exceed": "the release date exceeds the expiry date/time",
+  "expire_date_invalid": "the expiration date is before the current date/time",
+  "expire_date_exceed": "the expiration date is before the release date/time",
+
+  "item_exist" : "item already exists",
+  "item_is_active" : "item is already active",
+  "sms_char_exceed": "more than one page chars",
+  "sms_balance_err": "not enough credit. increase your credit"
+}

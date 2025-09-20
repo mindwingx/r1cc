@@ -1,0 +1,38 @@
+{
+  "test_msg": {
+    "one": "test {{.Item}} message",
+    "other": "test {{.Item}} {{.Item2}} messages"
+  },
+
+  "server_err": "خطای داخلی سرور",
+
+  "resp_fail": "خطا در پردازش درخواست",
+  "resp_done": "درخواست با موفقیت انجام شد",
+  "create_done": "ایجاد آیتم با موفقیت انجام شد",
+  "update_done": "بروزرسانی با موفقیت انجام شد",
+  "delete_done": "حذف با موفقیت انجام شد",
+  "not_found": "موردی یافت نشد",
+  "item_not_found": "مورد درخواستی {{.i}} یافت نشد",
+  "items_assigned": "مورد(ها) با موفقیت اختصاص داده شدند",
+  "tokens_revoked": "توکن ها با موفقیت لغو شدند",
+  "conflict_detected": "خطایی هنگام پردازش شناسایی شد",
+  "inactive_item": "برای ادامه فرآیند، آیتم {{.i}} فعال کنید",
+  "active_item_del_err": "آیتم مورد نظر فعال است.",
+  "shared_item_del_err": "آیتم مورد نظر اشتراک گذاشته شده است.",
+  "released_item_del_err": "آیتم مورد نظر منتشر شده است.",
+  "dto_bind_err": "داده ارسالی نامعتبر است",
+
+  "validation_err": "اعتبارسنجی ناموفق",
+  "invalid_processing" : "پردازش نامعتبر",
+  "relation_items_exist" : "برای رابطه {{.i}} موردهای وجود دارد",
+  "ids_not_matched": "شناسه ی {{.i}} مطابقت ندارد",
+  "release_date_invalid": "تاریخ انتشار قبل از تاریخ فعلی است",
+  "release_date_exceed": "تاریخ انتشار بعد از تاریخ انقضا است",
+  "expire_date_invalid": "تاریخ انقضا قبل از تاریخ فعلی است",
+  "expire_date_exceed": "تاریخ انقضا قبل از تاریخ انتشار است",
+
+  "item_exist" : "مورد از قبل وجود دارد",
+  "item_is_active" : "مورد از قبل فعال است",
+  "sms_char_exceed": "تعداد کاراکترها بیش از حد مجاز",
+  "sms_balance_err": "اعتبار کافی نیست. اعتبارتان را افزایش دهید"
+}

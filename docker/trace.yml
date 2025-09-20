@@ -1,0 +1,12 @@
+services:
+  tracer:
+    image: jaegertracing/all-in-one:latest
+#    platform: linux/amd64  # Specify architecture
+    environment:
+      - LOG_LEVEL=DEBUG
+#      - COLLECTOR_ZIPKIN_HOST_PORT=:9411
+    ports:
+      - 16686:16686 #UI
+      - 4318:4318 # HTTP
+    networks:
+      - backend
