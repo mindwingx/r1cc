@@ -235,11 +235,23 @@ func (q *queue) dlqTopicConsumer(ctx context.Context, handler chan struct{}) {
 //
 
 func (q *queue) consumeAndSendMessage(ctx context.Context, t string, msg *kafka.Message) (err error) {
+	sp, _ := q.trc.SpanByCtx(ctx, "queue.consume", "send.state.update")
+	defer sp.End()
+
+	sp.RecordError(errors.New("testable err"))
+
 	var value domain.OutboxMessage
 	if err = json.Unmarshal(msg.Value, &value); err != nil {
 		q.lgr.Error("queue.consumer.parse", zap.String("topic", t), zap.Error(err))
 		return
 	}
+
+	sp.AddEvent("details", trace.WithAttributes(
+		attribute.String("channel", value.Channel),
+		attribute.Int("tenant.id", int(value.TenantId)),
+		attribute.Int("message.id", int(value.MessageId)),
+		attribute.String("message.mobile", value.Mobile),
+	))
 
 	err = q.updateStatus(ctx, value.MessageId, value.OutboxId, domain.MsgSending, domain.OutboxPublishing)
 	if err != nil {
@@ -255,18 +267,27 @@ func (q *queue) consumeAndSendMessage(ctx context.Context, t string, msg *kafka.
 		return
 	}
 
+	sp.AddEvent("db.status.sending")
+
 	if _, err = q.sms.Send(value.Mobile, value.MessageText); err != nil {
 		q.lgr.Error("queue.consumer.provider.send",
+			zap.String("trace.id", sp.SpanContext().TraceID().String()),
 			zap.String("topic", t),
 			zap.String("message.id", string(msg.Key)),
 			zap.Error(err),
 		)
 
+		sp.RecordError(err)
 		return
 	}
 
+	sp.AddEvent("provider.sent")
+
 	err = q.updateStatus(ctx, value.MessageId, value.OutboxId, domain.MsgSent, domain.OutboxPublished)
+	sp.AddEvent("db.status.sent")
+
 	return
+
 }
 
 func (q *queue) updateStatus(ctx context.Context, msgId, outboxId uint, msgSt domain.MessageStatus, outboxSt domain.OutboxStatus) (err error) {
