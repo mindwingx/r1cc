@@ -113,7 +113,7 @@ func (uc *Usecase) GetDetails(ctx context.Context, ent domain.Credit, qp domain.
 		return
 	}
 
-	ent.SetTransactions(txs.List())
+	ent.SetTransactionList(txs)
 	res = ent
 	return
 }

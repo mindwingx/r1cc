@@ -4,6 +4,8 @@
     restart: always
     ports:
       - "8080:8080"
+    volumes:
+      - ./sms-logs:/app/logs
     depends_on:
       - cache
       - database

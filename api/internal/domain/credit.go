@@ -64,6 +64,13 @@ func (c *Credit) SetTransactions(src []Transaction) {
 	}
 }
 
+func (c *Credit) SetTransactionList(src TransactionList) {
+	if src.Total() > 0 {
+		c.transactions.SetList(src.List())
+		c.transactions.SetTotal(src.Total())
+	}
+}
+
 //
 
 func (c *Credit) FromDB(src model.Credits) Credit {
